@@ -15,3 +15,12 @@ export async function POST(request) {
     return new NextResponse(error, { status: 500 });
   }
 }
+
+export async function GET(request) {
+  try {
+    const posicionales = await prisma.posicionales.findMany();
+    return NextResponse.json({ data: posicionales }, { status: 200 });
+  } catch (error) {
+    return new NextResponse(error, { status: 500 });
+  }
+}
